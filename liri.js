@@ -36,18 +36,30 @@ function tweetfunc() {
     var request = require('request');
     let fs = require("fs")
     function release(movie) {
+      if (movie== undefined){
+        movie="Mr Nobody"
+      }
       request("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy&r=json", function (error, response, body) {
         //console.log('error:', error); // Print the error if one occurred
         //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         //console.log('body:', body); // Print the HTML for the Google homepage.
         object = JSON.parse(body)
-        console.log(object.Title)
+        console.log("*******************************************************************")
+        console.log("* Title: "+object.Title)
+        console.log("* Released: "+object.Released)
+        console.log("* Imdb Rating: "+object.imdbRating)
+        // if (object.Ratings[1].Source==="Rotten Tomatoes"){
+        //   console.log("* Rotten Tomatoes Rating: "+ object.Ratings[1].value)
+        // }
+        console.log("* Country: "+object.Country)
+        console.log("* Language: "+object.Language)
+        console.log("* Plot: "+object.Plot)
+        console.log("* Actors: "+object.Actors)
+        console.log("*******************************************************************")
+
     })
       }
     
-    
-
-      console.log("hello")
       switch (method) {
         case "my-tweets":
           tweetfunc()
